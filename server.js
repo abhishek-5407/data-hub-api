@@ -316,12 +316,21 @@ app.use((err, req, res, next) => {
 // Port Binding & Server Initialization
 // ==========================================
 if (require.main === module) {
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`====================================================`);
     console.log(`🚀 The Data Hub API Server is live on Port ${PORT}`);
     console.log(`📡 Local URL: http://localhost:${PORT}`);
     console.log(`📝 Health Check: http://localhost:${PORT}/`);
     console.log(`====================================================`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\n❌ Error: Port ${PORT} is already in use by another process.`);
+      console.error(`👉 Tip: Terminate the running process or start with: $env:PORT=5001; npm run dev\n`);
+    } else {
+      console.error('Server error:', err);
+    }
   });
 }
 
