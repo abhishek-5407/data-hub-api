@@ -27,6 +27,12 @@
 
 ```
 data-hub-api/
+├── public/                            # Responsive Web Console & API Playground
+│   ├── index.html                     # Semantic responsive HTML5 dashboard
+│   ├── css/
+│   │   └── style.css                  # Dark mode, glassmorphism & responsive CSS
+│   └── js/
+│       └── app.js                     # Client controller, test runner & REST sync
 ├── server.js                          # Core Express server, middleware & CRUD routes
 ├── package.json                       # Scripts, dependencies and engine metadata
 ├── .gitignore                         # Git exclusion rules (node_modules, logs)
