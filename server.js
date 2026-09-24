@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 5000;
 
 // Global JSON body parser
 app.use(express.json());
+
+// Serve static assets from public directory (CSS, JS, images)
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 // Phase 3: Custom Request Logging Middleware
 // Intercepts every incoming request and logs HTTP method, URL path, and timestamp
@@ -51,9 +55,19 @@ let blogPosts = [
 ];
 
 // ==========================================
-// API Root / Health Check
+// API Root / Health Check & Interactive Dashboard
 // ==========================================
 app.get('/', (req, res) => {
+  // If browser is navigating directly to / or format=html is requested
+  const acceptHeader = req.headers['accept'] || '';
+  const isBrowserNav = req.headers['sec-fetch-mode'] === 'navigate' ||
+                       (acceptHeader.includes('text/html') && !acceptHeader.includes('application/json'));
+
+  if (isBrowserNav || req.query.format === 'html') {
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  }
+
+  // Otherwise return JSON API health overview
   res.status(200).json({
     status: "online",
     message: "The Data Hub RESTful API Server is operational.",
@@ -68,6 +82,10 @@ app.get('/', (req, res) => {
       "POST /login": "Authenticate and receive a mock JWT token"
     }
   });
+});
+
+app.get(['/dashboard', '/console'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // ==========================================
