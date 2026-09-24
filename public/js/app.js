@@ -1,6 +1,6 @@
 /**
  * THE DATA HUB — CLIENT ENGINE & INTERACTIVE CONTROLLER
- * Sprint 09: Track B (Fullstack Architecture & RESTful API Console)
+ * Fullstack Architecture & RESTful API Console
  */
 
 document.addEventListener('DOMContentLoaded', () => {

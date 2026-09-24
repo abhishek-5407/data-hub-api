@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
     status: "online",
     message: "The Data Hub RESTful API Server is operational.",
     version: "1.0.0",
-    sprint: "Sprint 09 - Phase 3: Core Engineering",
+    architecture: "Core RESTful Engineering",
     endpoints: {
       "GET /posts": "Retrieve all blog posts",
       "GET /posts/:id": "Retrieve a single blog post by ID",
@@ -292,7 +292,7 @@ app.post('/login', (req, res) => {
     sub: username,
     role: username.toLowerCase() === "admin" ? "administrator" : "developer",
     track: "Track B - Fullstack Core Engineering",
-    sprint: "Sprint 09",
+    environment: "production",
     iat: Math.floor(Date.now() / 1000),
     exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24) // 24 hours expiry
   })).toString('base64url');

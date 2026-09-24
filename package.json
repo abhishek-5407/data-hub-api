@@ -1,7 +1,7 @@
 {
   "name": "data-hub-api",
   "version": "1.0.0",
-  "description": "The Data Hub - Commercial Grade RESTful API Server for Sprint 09",
+  "description": "The Data Hub - Commercial Grade RESTful API Server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -16,7 +16,7 @@
     "middleware",
     "data-hub"
   ],
-  "author": "Sprint 9 Associate",
+  "author": "Abhishek",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
